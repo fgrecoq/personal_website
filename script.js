@@ -80,63 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
   
-  // Form submission
-  const contactForm = document.getElementById('contact-form');
-  const formMessage = document.getElementById('form-message');
-  
-  if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          // Get form data
-          const formData = {
-              firstName: document.getElementById('firstName').value,
-              lastName: document.getElementById('lastName').value,
-              email: document.getElementById('email').value,
-              phone: document.getElementById('phone').value,
-              subject: document.getElementById('subject').value,
-              message: document.getElementById('message').value
-          };
-          
-          // In a real implementation, you would send this data to a server
-          // For this demo, we'll just show a success message
-          
-          // Simulate form submission
-          formMessage.textContent = 'Thank you for your message. I will get back to you soon.';
-          formMessage.classList.add('success');
-          
-          // Reset form
-          contactForm.reset();
-          
-          // Hide success message after 5 seconds
-          setTimeout(() => {
-              formMessage.textContent = '';
-              formMessage.classList.remove('success');
-          }, 5000);
-          
-          // In a real implementation, you would use something like:
-          /*
-          fetch('your-endpoint', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(formData)
-          })
-          .then(response => response.json())
-          .then(data => {
-              formMessage.textContent = 'Thank you for your message. I will get back to you soon.';
-              formMessage.classList.add('success');
-              contactForm.reset();
-          })
-          .catch(error => {
-              formMessage.textContent = 'There was an error sending your message. Please try again.';
-              formMessage.classList.add('error');
-          });
-          */
-      });
-  }
-  
   // Header scroll effect
   const header = document.querySelector('header');
   

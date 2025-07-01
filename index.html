@@ -200,12 +200,12 @@
                 <form id="contact-form" class="contact-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="fname" required>
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="lname" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -213,12 +213,12 @@
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" required>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Best time to reach you</label>
-                        <input type="text" id="subject" name="subject" required>
+                        <label for="timeToReach">Best time to reach you</label>
+                        <input type="text" id="timeToReach" name="timeToReach" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message <span class="small">(Keep it simple and be mindful of sharing confidential information through this form)</span></label>
@@ -227,6 +227,31 @@
                     <button type="submit" class="btn primary-btn">Submit</button>
                     <div id="form-message" class="form-message"></div>
                 </form>
+
+                <script>
+                    const form = document.getElementById("contact-form");
+                    
+                    form.addEventListener("submit", async (e) => {
+                        e.preventDefault();
+                    
+                        const formData = new FormData(form);
+                        const data = Object.fromEntries(formData.entries());
+                    
+                        try {
+                        const res = await fetch("https://script.google.com/macros/s/AKfycbzIobqMjmDwmzTo_B76M9HhLY7Fc_V6VFV3q4HlYBRKYTKXQKcO38GJRtINuP3VZyRUdw/exec", {
+                            method: "POST",
+                            body: JSON.stringify(data),
+                            headers: { "Content-Type": "application/json" },
+                        });
+                    
+                        const result = await res.json();
+                        alert("Form submitted!");
+                        form.reset();
+                        } catch (err) {
+                        alert("Submission failed");
+                        }
+                    });
+                </script>
             </div>
         </section>
     </main>
